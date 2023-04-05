@@ -1,6 +1,9 @@
 package ui;
 
 import org.eclipse.swt.widgets.Composite;
+
+import ui.utilities.LayoutStack;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -20,7 +23,7 @@ public class MainMenu extends Composite {
 		btnComputeSqareRoot.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				MainPage.getInstance().changeLayout(1);
+				LayoutStack.getInstance().changeLayout(1);
 			}
 		});
 		btnComputeSqareRoot.setBounds(10, 26, 131, 25);
@@ -30,7 +33,7 @@ public class MainMenu extends Composite {
 		btnComputePower.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				MainPage.getInstance().changeLayout(2);
+				LayoutStack.getInstance().changeLayout(2);
 			}
 		});
 		

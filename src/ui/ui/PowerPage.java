@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import logic.Mathematics;
+import ui.utilities.LayoutStack;
 
 public class PowerPage extends Composite {
 	
@@ -62,7 +63,7 @@ public class PowerPage extends Composite {
 				InputBase.setText("");
 				InputPower.setText("");
 				Output.setText("");
-				MainPage.getInstance().changeLayout(0);
+				LayoutStack.getInstance().changeLayout(0);
 			}
 		});
 		btnBack.setBounds(10, 78, 75, 25);

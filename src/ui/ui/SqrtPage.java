@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import logic.Mathematics;
+import ui.utilities.LayoutStack;
 
 public class SqrtPage extends Composite {
 	
@@ -56,7 +57,7 @@ public class SqrtPage extends Composite {
 			public void mouseDown(MouseEvent e) {
 				Input.setText("");
 				Output.setText("");
-				MainPage.getInstance().changeLayout(0);
+				LayoutStack.getInstance().changeLayout(0);
 			}
 		});
 		btnBack.setBounds(10, 88, 75, 25);

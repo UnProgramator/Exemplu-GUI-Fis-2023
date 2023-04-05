@@ -2,19 +2,13 @@ package ui;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
+
+import ui.utilities.LayoutStack;
 
 public class MainPage {
 
 	protected Shell shell;
 	
-	
-	Composite[] layouts;
-	int crtActive;
-	StackLayout stack;
-
 	/**
 	 * Launch the application.
 	 * @param args
@@ -50,27 +44,14 @@ public class MainPage {
 		shell = new Shell();
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
-		stack = new StackLayout();
-		shell.setLayout(stack);
 		
-		layouts = new Composite[3];
+		LayoutStack.createInstance(shell);
 		
-		layouts[0] = new MainMenu(shell, SWT.NONE);
-		
-		layouts[1] = new SqrtPage(shell, SWT.NONE);
-		
-		layouts[2] = new PowerPage(shell, SWT.NONE);
-		
-		changeLayout(0);
+		LayoutStack.getInstance().changeLayout(0);
 
 	}
 	
-	public void changeLayout(int winNumber) {
-		layouts[crtActive].setVisible(!layouts[crtActive].isVisible());
-		stack.topControl = layouts[winNumber];
-		crtActive = winNumber;
-		shell.layout();
-	}
+	private MainPage() {}
 	
 	private static MainPage _instance;
 	
