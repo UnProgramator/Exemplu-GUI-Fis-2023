@@ -1,32 +1,28 @@
-package ui.utilities;
+package ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-import ui.MainMenu;
-import ui.PowerPage;
-import ui.SqrtPage;
-
-public class LayoutStack {
+public class PageManager {
 	int crtActive;
 	StackLayout stack;
 	Composite[] layouts;
 	Shell shell;
 	
-	public LayoutStack(Shell shell) {
+	public PageManager(Shell shell) {
 		this.shell = shell;
 		stack = new StackLayout();
 		shell.setLayout(stack);
 		
 		layouts = new Composite[3];
 		
-		layouts[0] = new MainMenu(shell, SWT.NONE);
+		layouts[0] = new PageMain(shell, SWT.NONE);
 		
-		layouts[1] = new SqrtPage(shell, SWT.NONE);
+		layouts[1] = new PageSqrt(shell, SWT.NONE);
 		
-		layouts[2] = new PowerPage(shell, SWT.NONE);
+		layouts[2] = new PagePower(shell, SWT.NONE);
 	}
 	
 	public void changeLayout(int winNumber) {
@@ -36,13 +32,16 @@ public class LayoutStack {
 		shell.layout();
 	}
 	
-	private static LayoutStack _instance;
+	private static PageManager _instance;
 	
 	public static void createInstance(Shell shell) {
-		_instance = new LayoutStack(shell);
+		if(_instance == null)
+			_instance = new PageManager(shell);
+		else
+			throw new RuntimeException("PageManager already instantiated");
 	}
 	
-	public static LayoutStack getInstance() {
+	public static PageManager getInstance() {
 		if(_instance == null)
 			throw new RuntimeException("Stack not instanciated but used");
 		return _instance;

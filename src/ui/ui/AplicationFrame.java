@@ -3,9 +3,7 @@ package ui;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import ui.utilities.LayoutStack;
-
-public class MainPage {
+public class AplicationFrame {
 
 	protected Shell shell;
 	
@@ -15,7 +13,7 @@ public class MainPage {
 	 */
 	public static void main(String[] args) {
 		try {
-			MainPage window = MainPage.getInstance();
+			AplicationFrame window = AplicationFrame.getInstance();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,19 +43,19 @@ public class MainPage {
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
 		
-		LayoutStack.createInstance(shell);
+		PageManager.createInstance(shell);
 		
-		LayoutStack.getInstance().changeLayout(0);
+		PageManager.getInstance().changeLayout(0);
 
 	}
 	
-	private MainPage() {}
+	private AplicationFrame() {}
 	
-	private static MainPage _instance;
+	private static AplicationFrame _instance;
 	
-	public static MainPage getInstance() {
+	public static AplicationFrame getInstance() {
 		if(_instance == null)
-			_instance = new MainPage();
+			_instance = new AplicationFrame();
 		return _instance;
 	}
 }

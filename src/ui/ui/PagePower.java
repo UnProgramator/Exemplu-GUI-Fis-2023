@@ -9,27 +9,29 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import logic.Mathematics;
-import ui.utilities.LayoutStack;
 
-public class SqrtPage extends Composite {
+public class PagePower extends Composite {
 	
-	private Text Input;
+	private Text InputBase;
 	private Text Output;
 	private Text txtRezultat;
+	private Text InputPower;
 	private Button btnBack;
 	
-	public SqrtPage(Shell parent, int style) {
+	public PagePower(Shell parent, int style) {
 		super(parent, style);
 		
 		Button btnCompute = new Button(this, SWT.NONE);
 		btnCompute.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				var input = Input.getText();
 				try {
-				var output = Mathematics.getInstance().getSqrt(input);	
+					var base = InputBase.getText();
+					var power = InputPower.getText();
+					
+					var output = Mathematics.getInstance().gerPow(base, power);	
 								
-				Output.setText(output);
+					Output.setText(output);
 				}
 				catch(NumberFormatException er) {
 					new ErrorNotification(parent, SWT.NONE, "The input text is not a number. Failed with error:\n" + er.getMessage()).open();
@@ -39,8 +41,11 @@ public class SqrtPage extends Composite {
 		btnCompute.setBounds(10, 10, 75, 25);
 		btnCompute.setText("Compute");
 		
-		Input = new Text(this, SWT.BORDER);
-		Input.setBounds(91, 10, 76, 21);
+		InputBase = new Text(this, SWT.BORDER);
+		InputBase.setBounds(91, 10, 76, 21);
+		
+		InputPower = new Text(this, SWT.BORDER);
+		InputPower.setBounds(173, 10, 76, 21);
 		
 		Output = new Text(this, SWT.BORDER);
 		Output.setBounds(91, 51, 76, 21);
@@ -55,14 +60,14 @@ public class SqrtPage extends Composite {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				Input.setText("");
+				InputBase.setText("");
+				InputPower.setText("");
 				Output.setText("");
-				LayoutStack.getInstance().changeLayout(0);
+				PageManager.getInstance().changeLayout(0);
 			}
 		});
-		btnBack.setBounds(10, 88, 75, 25);
+		btnBack.setBounds(10, 78, 75, 25);
 		btnBack.setText("Back");
-		
 	}
 
 	@Override

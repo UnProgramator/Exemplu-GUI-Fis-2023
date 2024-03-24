@@ -1,29 +1,26 @@
 package ui;
 
 import org.eclipse.swt.widgets.Composite;
-
-import ui.utilities.LayoutStack;
-
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 
-public class MainMenu extends Composite {
+public class PageMain extends Composite {
 
 	/**
 	 * Create the composite.
 	 * @param parent
 	 * @param style
 	 */
-	public MainMenu(Composite parent, int style) {
+	public PageMain(Composite parent, int style) {
 		super(parent, style);
 		
 		Button btnComputeSqareRoot = new Button(this, SWT.NONE);
 		btnComputeSqareRoot.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				LayoutStack.getInstance().changeLayout(1);
+				PageManager.getInstance().changeLayout(1);
 			}
 		});
 		btnComputeSqareRoot.setBounds(10, 26, 131, 25);
@@ -33,7 +30,7 @@ public class MainMenu extends Composite {
 		btnComputePower.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				LayoutStack.getInstance().changeLayout(2);
+				PageManager.getInstance().changeLayout(2);
 			}
 		});
 		
